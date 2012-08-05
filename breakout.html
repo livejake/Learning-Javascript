@@ -4,260 +4,261 @@
 <div id="lives"><b>Lives: </b>50 </div>
 
 <script type="text/javascript">
-var BLOCK_WIDTH = 20; 
+var BLOCK_WIDTH = 20;
 var BLOCK_HEIGHT = 10;
-var BLOCK_SEP = 1; 
-var CANVAS_WIDTH = 42*5;
-var CANVAS_HEIGHT=100;
+var BLOCK_SEP = 1;
+var CANVAS_WIDTH = 42 * 5;
+var CANVAS_HEIGHT = 100;
 // Change to method 
 var dx = 10;
 var dy = 10;
 var NUM_ROWS = 5;
-var NUM_COLUMNS =  Math.floor(CANVAS_WIDTH/(BLOCK_WIDTH+BLOCK_SEP));
-var blocks = new Array(); 
+var NUM_COLUMNS = Math.floor(CANVAS_WIDTH / (BLOCK_WIDTH + BLOCK_SEP));
+var blocks = new Array();
 var PADDLE_WIDTH = 50;
-var PADDLE_HEIGHT = 10; 
+var PADDLE_HEIGHT = 10;
 var radius = 5;
 var score = 0;
-var WIN_SCORE = 50; 
+var WIN_SCORE = 50;
 var lives = 50;
 
 
-var colors = ["69D2E7","A7DBD8","E0E4CC","F38630","FA6900"] 
+var colors = ["69D2E7", "A7DBD8", "E0E4CC", "F38630", "FA6900"]
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
-window.addEventListener('keydown',doKeyDown,true);
+window.addEventListener('keydown', doKeyDown, true);
 
 
 function fillrow(row) {
-	
-	num = row*(BLOCK_HEIGHT+BLOCK_SEP);
-//	blocks_quantity = Math.round(CANVAS_WIDTH/(BLOCK_WIDTH+BLOCK_SEP));
-//	blocks[row] = new Array(blocks_quantity);
-blocks[row] = new Array(NUM_COLUMNS);
-	for(var i=0;i <NUM_COLUMNS;i++){
-		blocks[row][i] = 1;
-		colornum = Math.floor((Math.random()*colors.length));
-		ctx.fillStyle=colors[colornum];
-		x= i*(BLOCK_WIDTH+BLOCK_SEP);
-		y= num;
-		ctx.fillRect(x,y,BLOCK_WIDTH,BLOCK_HEIGHT);
-	}
+
+    num = row * (BLOCK_HEIGHT + BLOCK_SEP);
+    //	blocks_quantity = Math.round(CANVAS_WIDTH/(BLOCK_WIDTH+BLOCK_SEP));
+    //	blocks[row] = new Array(blocks_quantity);
+    blocks[row] = new Array(NUM_COLUMNS);
+    for (var i = 0; i < NUM_COLUMNS; i++) {
+        blocks[row][i] = 1;
+        colornum = Math.floor((Math.random() * colors.length));
+        ctx.fillStyle = colors[colornum];
+        x = i * (BLOCK_WIDTH + BLOCK_SEP);
+        y = num;
+        ctx.fillRect(x, y, BLOCK_WIDTH, BLOCK_HEIGHT);
+    }
 }
 
 // Fill block one, 
 function createblocks() {
-for(var i= 0;i < NUM_ROWS;i++){
-fillrow(i);
-}
+    for (var i = 0; i < NUM_ROWS; i++) {
+        fillrow(i);
+    }
 }
 
 // intialize blocks 
-createblocks(); 
+createblocks();
 // intialize paddle
-ctx.fillStyle=colors[1];
-var start_pos= CANVAS_WIDTH/BLOCK_WIDTH; 
-ctx.fillRect(start_pos,CANVAS_HEIGHT-BLOCK_HEIGHT,PADDLE_WIDTH,PADDLE_HEIGHT);
+ctx.fillStyle = colors[1];
+var start_pos = CANVAS_WIDTH / BLOCK_WIDTH;
+ctx.fillRect(start_pos, CANVAS_HEIGHT - BLOCK_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT);
 var paddlex = start_pos;
-var paddley = CANVAS_HEIGHT-BLOCK_HEIGHT;
+var paddley = CANVAS_HEIGHT - BLOCK_HEIGHT;
 
 // initialize ball 
 ctx.fillC
 
-function doKeyDown(evt){
-  switch (evt.keyCode) {
-  //   case 38:  /* Up arrow was pressed */
- //  		if (paddley - NUM_ROWS*(BLOCK_HEIGHT+BLOCK_SEP)-PADDLE_HEIGHT >= 0){ 
-  // 		ctx.clearRect(paddlex,paddley,PADDLE_WIDTH,PADDLE_HEIGHT);
- //        paddley -= dy;
-  //       ctx.fillStyle=colors[1];
-   //      ctx.fillRect(paddlex,paddley,PADDLE_WIDTH,PADDLE_HEIGHT);
- //      }
-   //    break;
- // case 40:  /* Down arrow was pressed */
- //		if (paddley + dy <= CANVAS_HEIGHT){ 
-  // 		ctx.clearRect(paddlex,paddley,PADDLE_WIDTH,PADDLE_HEIGHT);
-  //       paddley += dy;
-  //       ctx.fillStyle=colors[1];
-  //       ctx.fillRect(paddlex,paddley,PADDLE_WIDTH,PADDLE_HEIGHT);
-  //     }
- //     break;
-    case 37:  /* Left arrow was pressed */
-  		if (paddlex >= 0){ 
-  		ctx.clearRect(paddlex*(1+1/dx),paddley,PADDLE_WIDTH*(1+1/dx),PADDLE_HEIGHT);
-        paddlex -= dx;
-        ctx.fillStyle=colors[1];
-        ctx.fillRect(paddlex,paddley,PADDLE_WIDTH,PADDLE_HEIGHT);
-      }
-      break;
-    case 39:  /* Right arrow was pressed */
-    // Maybe change later to take into account total block widths + sep. Better for  
-  		if (paddlex + PADDLE_WIDTH <= CANVAS_WIDTH){ 
-  		ctx.clearRect(paddlex*(1-1/dx),paddley,PADDLE_WIDTH*(1-1/dx),PADDLE_HEIGHT);
-        paddlex += dx;
-        ctx.fillStyle=colors[1];
-        ctx.fillRect(paddlex,paddley,PADDLE_WIDTH,PADDLE_HEIGHT);
-      }
-      break;
-  }
+function doKeyDown(evt) {
+    switch (evt.keyCode) {
+        //   case 38:  /* Up arrow was pressed */
+        //  		if (paddley - NUM_ROWS*(BLOCK_HEIGHT+BLOCK_SEP)-PADDLE_HEIGHT >= 0){ 
+        // 		ctx.clearRect(paddlex,paddley,PADDLE_WIDTH,PADDLE_HEIGHT);
+        //        paddley -= dy;
+        //       ctx.fillStyle=colors[1];
+        //      ctx.fillRect(paddlex,paddley,PADDLE_WIDTH,PADDLE_HEIGHT);
+        //      }
+        //    break;
+        // case 40:  /* Down arrow was pressed */
+        //		if (paddley + dy <= CANVAS_HEIGHT){ 
+        // 		ctx.clearRect(paddlex,paddley,PADDLE_WIDTH,PADDLE_HEIGHT);
+        //       paddley += dy;
+        //       ctx.fillStyle=colors[1];
+        //       ctx.fillRect(paddlex,paddley,PADDLE_WIDTH,PADDLE_HEIGHT);
+        //     }
+        //     break;
+    case 37:
+        /* Left arrow was pressed */
+        if (paddlex >= 0) {
+            ctx.clearRect(paddlex * (1 + 1 / dx), paddley, PADDLE_WIDTH * (1 + 1 / dx), PADDLE_HEIGHT);
+            paddlex -= dx;
+            ctx.fillStyle = colors[1];
+            ctx.fillRect(paddlex, paddley, PADDLE_WIDTH, PADDLE_HEIGHT);
+        }
+        break;
+    case 39:
+        /* Right arrow was pressed */
+        // Maybe change later to take into account total block widths + sep. Better for  
+        if (paddlex + PADDLE_WIDTH <= CANVAS_WIDTH) {
+            ctx.clearRect(paddlex * (1 - 1 / dx), paddley, PADDLE_WIDTH * (1 - 1 / dx), PADDLE_HEIGHT);
+            paddlex += dx;
+            ctx.fillStyle = colors[1];
+            ctx.fillRect(paddlex, paddley, PADDLE_WIDTH, PADDLE_HEIGHT);
+        }
+        break;
+    }
 }
 
-ctx.fillStyle=colors[3];
+ctx.fillStyle = colors[3];
 var circlex = 200;
 var circley = 200;
 
 // if height is less than or equal to paddle AND x value is within the range of the paddle, then reverse direction
 
 ctx.beginPath();
-ctx.arc(circlex, circley, radius, 0,Math.PI*2, true); 
+ctx.arc(circlex, circley, radius, 0, Math.PI * 2, true);
 ctx.closePath();
 ctx.fill();
 
 directionx = 1;
-directiony= 1; 
+directiony = 1;
 
-function eraseblock(row,column){
-blocks[row-1][column-1]=0;
-score++;
-document.getElementById("score").innerHTML = "<b> Score</b>: "+ score; 
-if(score==50){
-alert("You Win!")
-}
+function eraseblock(row, column) {
+    blocks[row - 1][column - 1] = 0;
+    score++;
+    document.getElementById("score").innerHTML = "<b> Score</b>: " + score;
+    if (score == 50) {
+        alert("You Win!")
+    }
 
-x=(BLOCK_WIDTH+BLOCK_SEP)*(column-1);
-y=(BLOCK_HEIGHT+BLOCK_SEP)*(row-1);
-ctx.clearRect(x,y,BLOCK_WIDTH,BLOCK_HEIGHT);
-directiony = -directiony;
+    x = (BLOCK_WIDTH + BLOCK_SEP) * (column - 1);
+    y = (BLOCK_HEIGHT + BLOCK_SEP) * (row - 1);
+    ctx.clearRect(x, y, BLOCK_WIDTH, BLOCK_HEIGHT);
+    directiony = -directiony;
 }
 
 
 /*Floor gets you to brick before point, so you need to add one */
-function row(x){
-if(Math.floor(x/(BLOCK_HEIGHT+BLOCK_SEP))==(x/(BLOCK_HEIGHT+BLOCK_SEP))){
-return(x/(BLOCK_HEIGHT+BLOCK_SEP))
-}
-return(Math.floor(x/(BLOCK_HEIGHT+BLOCK_SEP))+1)
-}
-
-function column(y){
-if(Math.floor(y/(BLOCK_WIDTH+BLOCK_SEP))==(y/(BLOCK_WIDTH+BLOCK_SEP))){
-return(y/(BLOCK_WIDTH+BLOCK_SEP))
-}
-return(Math.floor(y/(BLOCK_WIDTH+BLOCK_SEP))+1)
+function row(x) {
+    if (Math.floor(x / (BLOCK_HEIGHT + BLOCK_SEP)) == (x / (BLOCK_HEIGHT + BLOCK_SEP))) {
+        return (x / (BLOCK_HEIGHT + BLOCK_SEP))
+    }
+    return (Math.floor(x / (BLOCK_HEIGHT + BLOCK_SEP)) + 1)
 }
 
-function moveball(){
-
-
-ctx.beginPath();
-ctx.clearRect(circlex - radius, circley - radius, radius * 2 , radius * 2);
-ctx.closePath();
-//paddle
-
-//
-
-ctx.fillStyle=colors[1];
-ctx.fillRect(paddlex,paddley,PADDLE_WIDTH,PADDLE_HEIGHT);
-
-if((circley+radius)>=paddley&circlex>=paddlex&circlex<=(paddlex+PADDLE_WIDTH)){
-directiony = -directiony; 
+function column(y) {
+    if (Math.floor(y / (BLOCK_WIDTH + BLOCK_SEP)) == (y / (BLOCK_WIDTH + BLOCK_SEP))) {
+        return (y / (BLOCK_WIDTH + BLOCK_SEP))
+    }
+    return (Math.floor(y / (BLOCK_WIDTH + BLOCK_SEP)) + 1)
 }
 
-if((circlex+radius)>=(CANVAS_WIDTH)){
-directionx = -directionx; 
+function moveball() {
+
+
+    ctx.beginPath();
+    ctx.clearRect(circlex - radius, circley - radius, radius * 2, radius * 2);
+    ctx.closePath();
+    //paddle
+
+    //
+
+    ctx.fillStyle = colors[1];
+    ctx.fillRect(paddlex, paddley, PADDLE_WIDTH, PADDLE_HEIGHT);
+
+    if ((circley + radius) >= paddley & circlex >= paddlex & circlex <= (paddlex + PADDLE_WIDTH)) {
+        directiony = -directiony;
+    }
+
+    if ((circlex + radius) >= (CANVAS_WIDTH)) {
+        directionx = -directionx;
+    }
+
+    if (circlex <= (0 + radius) & directionx < 0) {
+        directionx = -directionx;
+    }
+
+    if (circley >= (CANVAS_HEIGHT - radius) & directiony > 0) {
+        lives = lives - 1;
+        document.getElementById("lives").innerHTML = "<b> Lives</b>: " + lives;
+        if (lives == 0) {
+            alert("game over")
+        }
+        directiony = -directiony;
+    }
+
+    if (circley <= radius & directiony < 0) {
+        directiony = -directiony;
+    }
+
+    //blocks
+
+    row1 = row(circley)
+    row2 = row(circley - radius)
+    row3 = row(circley + radius)
+    column1 = column(circlex)
+    column2 = column(circlex - radius)
+    column3 = column(circlex + radius)
+
+    if (row3 <= (NUM_ROWS) & circley >= radius & row1 <= (NUM_ROWS) & column2 <= (NUM_COLUMNS)) {
+
+        // NUMROWS*(circley-radius*2)<=(BLOCK_HEIGHT+BLOCK_SEP)
+        if (blocks[row1 - 1][column1 - 1] == 1) {
+            eraseblock(row1, column1);
+        }
+
+
+        if (blocks[row1 - 1][column2 - 1] == 1) {
+            eraseblock(row1, column2);
+        }
+
+
+        if (blocks[row1 - 1][column3 - 1] == 1) {
+            eraseblock(row1, column3);
+        }
+
+        console.log(row1);
+        console.log(column1);
+
+        if (blocks[row2 - 1][column1 - 1] == 1) {
+            eraseblock(row2, column1);
+        }
+
+        if (blocks[row2 - 1][column2 - 1] == 1) {
+            eraseblock(row2, column2);
+        }
+
+
+        if (blocks[row2 - 1][column3 - 1] == 1) {
+            eraseblock(row2, column3);
+        }
+
+        if (blocks[row3 - 1][column1 - 1] == 1) {
+            eraseblock(row3, column1);
+        }
+
+        if (blocks[row3 - 1][column2 - 1] == 1) {
+            eraseblock(row3, column2);
+        }
+
+
+        if (blocks[row3 - 1][column3 - 1] == 1) {
+            eraseblock(row3, column3);
+        }
+
+
+
+
+    }
+    //walls
+
+    // if collision change direction, if with blocks, eliminate blocks 
+    circlex += dx * directionx;
+    circley += dy * directiony;
+    ctx.beginPath();
+    ctx.fillStyle = colors[3];
+    ctx.arc(circlex, circley, radius, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.fill();
 }
 
-if(circlex<=(0+radius) & directionx<0){
-directionx = -directionx; 
+for (var j = 0; j < 3000; j++) {
+    timeouttime = j * 100;
+    setTimeout("moveball()", timeouttime);
 }
-
-if(circley>=(CANVAS_HEIGHT-radius) & directiony > 0){
-lives = lives -1;
-document.getElementById("lives").innerHTML = "<b> Lives</b>: "+ lives; 
-if(lives ==0){
-alert("game over")
-}
-directiony = -directiony; 
-}
-
-if(circley<=radius & directiony < 0){
-directiony = -directiony; 
-}
-
-//blocks
-
-row1 = row(circley)
-row2 = row(circley-radius)
-row3 = row(circley+radius)
-column1 = column(circlex) 
-column2 = column(circlex-radius) 
-column3 = column(circlex+radius) 
-
-if(row3<=(NUM_ROWS)  & circley>=radius & row1<=(NUM_ROWS) & column2<=(NUM_COLUMNS)){
-
-// NUMROWS*(circley-radius*2)<=(BLOCK_HEIGHT+BLOCK_SEP)
-if(blocks[row1-1][column1-1]==1){
-eraseblock(row1,column1);
-}
-
-
-if(blocks[row1-1][column2-1]==1){
-eraseblock(row1,column2);
-}
-
-
-if(blocks[row1-1][column3-1]==1){
-eraseblock(row1,column3);
-}
-
-console.log(row1);
-console.log(column1);
-
-if(blocks[row2-1][column1-1]==1){
-eraseblock(row2,column1);
-}
-
-if(blocks[row2-1][column2-1]==1){
-eraseblock(row2,column2);
-}
-
-
-if(blocks[row2-1][column3-1]==1){
-eraseblock(row2,column3);
-}
-
-if(blocks[row3-1][column1-1]==1){
-eraseblock(row3,column1);
-}
-
-if(blocks[row3-1][column2-1]==1){
-eraseblock(row3,column2);
-}
-
-
-if(blocks[row3-1][column3-1]==1){
-eraseblock(row3,column3);
-}
-
-
-
-
-}
-//walls
-
-// if collision change direction, if with blocks, eliminate blocks 
-circlex += dx*directionx;
-circley += dy*directiony;
-ctx.beginPath();
-ctx.fillStyle=colors[3];
-ctx.arc(circlex, circley, radius, 0,Math.PI*2, true); 
-ctx.closePath();
-ctx.fill();
-} 
-
-for(var j=0; j <3000; j++){
-timeouttime= j*100;
-setTimeout("moveball()",timeouttime);
-}
-
 </script>
