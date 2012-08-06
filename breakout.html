@@ -122,7 +122,7 @@ function eraseblock(row, column) {
     blocks[row - 1][column - 1] = 0;
     score++;
     document.getElementById("score").innerHTML = "<b> Score</b>: " + score;
-    if (score == 50) {
+    if (score === 50) {
         alert("You Win!")
     }
 
@@ -135,14 +135,14 @@ function eraseblock(row, column) {
 
 /*Floor gets you to brick before point, so you need to add one */
 function row(x) {
-    if (Math.floor(x / (BLOCK_HEIGHT + BLOCK_SEP)) == (x / (BLOCK_HEIGHT + BLOCK_SEP))) {
+    if (Math.floor(x / (BLOCK_HEIGHT + BLOCK_SEP)) === (x / (BLOCK_HEIGHT + BLOCK_SEP))) {
         return (x / (BLOCK_HEIGHT + BLOCK_SEP))
     }
     return (Math.floor(x / (BLOCK_HEIGHT + BLOCK_SEP)) + 1)
 }
 
 function column(y) {
-    if (Math.floor(y / (BLOCK_WIDTH + BLOCK_SEP)) == (y / (BLOCK_WIDTH + BLOCK_SEP))) {
+    if (Math.floor(y / (BLOCK_WIDTH + BLOCK_SEP)) === (y / (BLOCK_WIDTH + BLOCK_SEP))) {
         return (y / (BLOCK_WIDTH + BLOCK_SEP))
     }
     return (Math.floor(y / (BLOCK_WIDTH + BLOCK_SEP)) + 1)
@@ -176,7 +176,7 @@ function moveball() {
     if (circley >= (CANVAS_HEIGHT - radius) & directiony > 0) {
         lives = lives - 1;
         document.getElementById("lives").innerHTML = "<b> Lives</b>: " + lives;
-        if (lives == 0) {
+        if (lives === 0) {
             alert("game over")
         }
         directiony = -directiony;
@@ -198,46 +198,46 @@ function moveball() {
     if (row3 <= (NUM_ROWS) & circley >= radius & row1 <= (NUM_ROWS) & column2 <= (NUM_COLUMNS)) {
 
         // NUMROWS*(circley-radius*2)<=(BLOCK_HEIGHT+BLOCK_SEP)
-        if (blocks[row1 - 1][column1 - 1] == 1) {
+        if (blocks[row1 - 1][column1 - 1] === 1) {
             eraseblock(row1, column1);
         }
 
 
-        if (blocks[row1 - 1][column2 - 1] == 1) {
+        if (blocks[row1 - 1][column2 - 1] === 1) {
             eraseblock(row1, column2);
         }
 
 
-        if (blocks[row1 - 1][column3 - 1] == 1) {
+        if (blocks[row1 - 1][column3 - 1] === 1) {
             eraseblock(row1, column3);
         }
 
         console.log(row1);
         console.log(column1);
 
-        if (blocks[row2 - 1][column1 - 1] == 1) {
+        if (blocks[row2 - 1][column1 - 1] === 1) {
             eraseblock(row2, column1);
         }
 
-        if (blocks[row2 - 1][column2 - 1] == 1) {
+        if (blocks[row2 - 1][column2 - 1] === 1) {
             eraseblock(row2, column2);
         }
 
 
-        if (blocks[row2 - 1][column3 - 1] == 1) {
+        if (blocks[row2 - 1][column3 - 1] === 1) {
             eraseblock(row2, column3);
         }
 
-        if (blocks[row3 - 1][column1 - 1] == 1) {
+        if (blocks[row3 - 1][column1 - 1] === 1) {
             eraseblock(row3, column1);
         }
 
-        if (blocks[row3 - 1][column2 - 1] == 1) {
+        if (blocks[row3 - 1][column2 - 1] === 1) {
             eraseblock(row3, column2);
         }
 
 
-        if (blocks[row3 - 1][column3 - 1] == 1) {
+        if (blocks[row3 - 1][column3 - 1] === 1) {
             eraseblock(row3, column3);
         }
 
