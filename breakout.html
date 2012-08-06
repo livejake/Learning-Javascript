@@ -2,8 +2,10 @@
 <canvas id="myCanvas" width="210" height="150"></canvas>
 <div id="score"><b>Score: </b>0 </div>
 <div id="lives"><b>Lives: </b>50 </div>
-
+<button onclick="game.start()">Start Game</button>
 <script type="text/javascript">
+
+var game = function(){
 var BLOCK_WIDTH = 20;
 var BLOCK_HEIGHT = 10;
 var BLOCK_SEP = 1;
@@ -257,8 +259,18 @@ function moveball() {
     ctx.fill();
 }
 
-for (var j = 0; j < 3000; j++) {
-    timeouttime = j * 100;
-    setTimeout("moveball()", timeouttime);
+return{
+	start: function(){
+	for (var j = 0; j < 3000; j++) {
+    	timeouttime = j * 100;
+    	setTimeout(moveball, timeouttime);
+		}
+	} 	
+	
 }
+
+}();
+
+
+
 </script>
